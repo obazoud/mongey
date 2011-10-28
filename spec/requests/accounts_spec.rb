@@ -10,11 +10,9 @@ describe "Accounts" do
   end
 
   describe "POST /accounts" do
-    it "create account" do
+    it "let's you choose account type" do
       visit new_account_path
-      fill_in "New Account", :with => "Bank account"
-      click_button "Create account"
-      response.body.should include("Successfully created account")
+      response.body.should include("Choose type")
       response.body.should include("Bank account")
     end
   end
