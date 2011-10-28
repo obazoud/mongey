@@ -1,0 +1,10 @@
+<h1>Payees</h1>
+<p><strong>Found <%= @payees.count %> payees.</strong><p>
+
+<table>
+  <% @payees.each do |payee| %>
+  <tr>
+    <td><%= payee.name %></td>
+  </tr>
+  <% end %>
+</table>

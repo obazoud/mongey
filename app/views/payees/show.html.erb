@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @payee.name %>
+</p>
+
+<p>
+  <b>Customer Number:</b>
+  <%= @payee.customer_number %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @payee.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_payee_path(@payee) %> |
+<%= link_to 'Back', payees_path %>
+
+<table>
+<% @payee.transactions.each do |t| %>
+  <tr>
+    <td><%= t.memo %></td>
+    <td><%= t.credit %></td>
+    <td><%= t.debit %></td>
+    <td><%= t.transaction.memo %></td>
+    <td><%= t.category.name %></td>
+  </tr>
+<% end %>
+</table>

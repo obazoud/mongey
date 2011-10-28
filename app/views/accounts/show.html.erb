@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @account.name %>
+</p>
+
+<p>
+  <b>Balance:</b>
+  <%= @account.balance %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%= @account.number %>
+</p>
+
+<p>
+  <b>Opening date:</b>
+  <%= @account.opening_date %>
+</p>
+
+<p>
+  <b>Interest rate:</b>
+  <%= @account.interest_rate %>
+</p>
+
+<p>
+  <b>Credit limit:</b>
+  <%= @account.credit_limit %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
+
+<h2>Recent transactions</h2>
+<table>
+  <tr>
+    <td>Date</td>
+    <td>Memo</td>
+    <td>Amount</td>
+    <td>Category</td>
+  </tr>
+<% @account.transactions.each do |t| %>
+  <tr>
+    <td><%= t.event.operation_date %></li>
+    <td><%= t.memo %></td>
+    <td><%= t.credit - t.debit %></td>
+    <td><%= link_to t.category.name, t.category %></td>
+  </tr>
+<% end %>
+</table>

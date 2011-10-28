@@ -1,0 +1,42 @@
+<%= form_for(@payment) do |f| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :payee %><br />
+    <%= f.text_field :payee %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.text_field :operation_date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_field :memo %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= collection_select(:payment, :category_id, Category.all, :id, :name)  %>
+  </div>
+  <div class="field">
+    <%= f.label :from_account %><br />
+    <%= collection_select(:payment, :from_account_id, Bankaccount.all, :id, :name)  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
