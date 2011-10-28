@@ -9,11 +9,10 @@ describe "Accounts" do
     end
   end
 
-  describe "POST /accounts" do
+  describe "GET /accounts/new" do
     it "let's you choose account type" do
       visit new_account_path
-      response.body.should include("Choose type")
-      response.body.should include("Bank account")
+      page.should have_content("Choose type")
     end
   end
 end
