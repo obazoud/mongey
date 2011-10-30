@@ -40,7 +40,7 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
+    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
 end
 
 # --- Instructions ---
