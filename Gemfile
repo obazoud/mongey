@@ -41,4 +41,6 @@ group :test do
   gem 'guard-livereload'
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
+  gem 'libnotify'
+  gem 'mongoid-rspec'
 end

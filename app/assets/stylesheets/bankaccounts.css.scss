@@ -1,3 +1,16 @@
 // Place all the styles related to the Bankaccounts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-buttons {
+  position: absolute;
+  left: 500px;
+  top: 10px;
+  .ui-button {
+    font-size: 0.8em;
+    padding: .3em .7em;
+    .ui-button-text {
+      padding: .1em .2em;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<h1>Listing currencies</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Prefix</th>
+    <th>Suffix</th>
+    <th>Thousand separator</th>
+    <th>Decimal point</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @currencies.each do |currency| %>
+  <tr>
+    <td><%= currency.code %></td>
+    <td><%= currency.prefix %></td>
+    <td><%= currency.suffix %></td>
+    <td><%= currency.thousand_separator %></td>
+    <td><%= currency.decimal_point %></td>
+    <td><%= link_to 'Show', currency %></td>
+    <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
+    <td><%= link_to 'Destroy', currency, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Currency', new_currency_path %>

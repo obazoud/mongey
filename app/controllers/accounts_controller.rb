@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  helper CurrenciesHelper
+
   # GET /accounts
   # GET /accounts.json
   def index

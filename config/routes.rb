@@ -1,6 +1,5 @@
 Mongey::Application.routes.draw do
-
-
+  resources :currencies
 
   resources :categories
 
