@@ -19,14 +19,7 @@ end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -38,7 +31,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
-  gem 'guard-livereload'
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
   gem 'libnotify'
