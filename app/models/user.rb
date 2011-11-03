@@ -9,8 +9,15 @@ class User
   field :password_salt, :type => String
 
   attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :currency_id
   attr_accessor :password
+
   before_save :encrypt_password
+
+  has_many :accounts
+  has_many :bankaccounts
+  has_many :events
+  belongs_to :currency
 
   validates_presence_of :username, :email
   validates_presence_of :password, :on => :create

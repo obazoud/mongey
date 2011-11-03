@@ -1,7 +1,16 @@
 Mongey::Application.routes.draw do
-  resources :users
-  resources :currencies
+  get "login" =>  "sessions#new", :as => "login"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "signup" => "users#new", :as => "signup"
+  get "settings" => "users#settings", :as => "settings"
+  resources :sessions
+  resources :users do
+    collection do
+      get "settings"
+    end
+  end
 
+  resources :currencies
   resources :categories
 
   resources :events

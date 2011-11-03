@@ -22,7 +22,7 @@ gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'rspec-rails', :group => [:test, :development]
 group :test do

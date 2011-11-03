@@ -11,6 +11,7 @@ class Account
   validates_presence_of :name, :opening_date
 
   has_many :transactions
+  belongs_to :user
   belongs_to :currency
 
   validates_associated :currency

@@ -5,16 +5,16 @@ class BankaccountsController < ApplicationController
   end
 
   def new
-    @bankaccount = Bankaccount.new
+    @bankaccount = current_user.bankaccounts.new
 
   end
 
   def show
-    @bankaccount = Bankaccount.find(params[:id])
+    @bankaccount = current_user.bankaccounts.find(params[:id])
   end
 
   def create
-    @bankaccount = Bankaccount.new(params[:bankaccount])
+    @bankaccount = current_user.bankaccounts.new(params[:bankaccount])
 
     if @bankaccount.save
       redirect_to @bankaccount, notice: 'Account created successfully.'
@@ -24,11 +24,11 @@ class BankaccountsController < ApplicationController
   end
 
   def edit
-    @bankaccount = Bankaccount.find(params[:id])
+    @bankaccount = current_user.bankaccounts.find(params[:id])
   end
 
   def update
-    @bankaccount = Bankaccount.find(params[:id])
+    @bankaccount = current_user.bankaccounts.find(params[:id])
 
     respond_to do |format|
       if @bankaccount.update_attributes(params[:bankaccount])

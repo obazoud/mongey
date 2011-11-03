@@ -9,6 +9,7 @@ class Currency
   field :decimal_point, :type => String
 
   has_many :accounts
+  has_many :users
 
   def format(amount)
     a = '%.2f' % amount

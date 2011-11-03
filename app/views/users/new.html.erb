@@ -1,5 +1,4 @@
-<h1>Signup</h1>
-<p>Fill in the form to create a new user.</p>
+<h1>Sign up</h1>
 
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
@@ -19,6 +18,10 @@
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :currency %><br />
+    <%= collection_select(:user, :currency_id, Currency.all, :id, :code) %>
   </p>
   <p>
     <%= f.label :password %><br />
