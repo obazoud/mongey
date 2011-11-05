@@ -1,0 +1,44 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#userbar {
+  width: 100%;
+  height: 2.4em;
+  padding: 1em;
+  top: 0px;
+  left: 0px;
+  background-color: #53f;
+  border-bottom: 2px solid black;
+
+  #title {
+    font-size: 3em;
+    color: white;
+    position: relative;
+    float: left;
+    clear: none;
+  }
+
+  #user {
+    color: white;
+    left: 3em;
+    position: relative;
+    clear: none;
+    float: left;
+    top: 1em;
+  }
+}
+
+#flash_alert {
+  border: 1px solid #F44;
+  padding: 1em;
+  background-color: #FBB;
+}
+
+#flash_notice {
+  border: 1px solid #2F2;
+  padding: 1em;
+  background-color: #CFC;
+}
+
