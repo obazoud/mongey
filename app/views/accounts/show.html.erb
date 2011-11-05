@@ -7,7 +7,7 @@
 
 <p>
   <b>Balance:</b>
-  <%= @account.balance %>
+  <%= format_currency(@account.balance, @account.currency) %>
 </p>
 
 <p>

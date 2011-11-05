@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def auth_required
+   if current_user
+     @current_user
+   else
+     redirect_to login_path, :alert => "Login required!"
+   end
+  end
+
 private
 
   def current_user

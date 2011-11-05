@@ -3,4 +3,5 @@ class Event
   field :operation_date, :type => Date
   field :memo, :type => String
   has_many :transactions
+  belongs_to :user
 end

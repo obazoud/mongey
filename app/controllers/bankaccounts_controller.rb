@@ -1,6 +1,8 @@
 class BankaccountsController < ApplicationController
   helper CurrenciesHelper
 
+  before_filter :auth_required
+
   def index
   end
 

@@ -9,11 +9,14 @@ describe UsersController do
     FactoryGirl.attributes_for(:user)
   end
 
-  describe "GET show" do
-    it "assigns the requested user as @user" do
-      user = User.create! valid_attributes
-      get :show, :id => user.id
-      assigns(:user).should eq(user)
+  describe "GET settings" do
+    context "when signed in" do
+      it "assigns the current user as @user" do
+        user = User.create! valid_attributes
+        log_in user
+        get :show, :id => user.id
+        assigns(:user).should eq(user)
+      end
     end
   end
 
@@ -21,14 +24,6 @@ describe UsersController do
     it "assigns a new user as @user" do
       get :new
       assigns(:user).should be_a_new(User)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested user as @user" do
-      user = User.create! valid_attributes
-      get :edit, :id => user.id
-      assigns(:user).should eq(user)
     end
   end
 

@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
-  def index
-    redirect_to login_path unless current_user
 
-    @bankaccounts = Bankaccount.all
-    @events = Event.all
+  before_filter :auth_required
+
+  def index
+    @bankaccounts = @current_user.bankaccounts.all
+    @events = @current_user.events.all
   end
 end
