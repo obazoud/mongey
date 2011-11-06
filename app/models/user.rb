@@ -17,7 +17,12 @@ class User
 
   has_many :accounts
   has_many :bankaccounts
+  has_many :payees
+
   has_many :events
+  has_many :payments
+  has_many :deposits
+
   belongs_to :currency
 
   validates_presence_of :username, :email

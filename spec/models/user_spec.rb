@@ -11,6 +11,24 @@ describe User do
     end
   end
 
+  describe 'relations' do
+    it 'belongs to currency' do
+      should belong_to(:currency).of_type(Currency)
+    end
+
+    it 'has many accounts, bankaccounts and payees' do
+      should have_many(:accounts).of_type(Account)
+      should have_many(:bankaccounts).of_type(Bankaccount)
+      should have_many(:payees).of_type(Payee)
+    end
+
+    it 'has many events, payments and deposits' do
+      should have_many(:events).of_type(Event)
+      should have_many(:payments).of_type(Payment)
+      should have_many(:deposits).of_type(Deposit)
+    end
+  end
+
   describe 'validation' do
     it 'validate presence of username and email' do
       should validate_presence_of( :username )
