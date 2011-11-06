@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   field :username, :type => String
   field :email, :type => String
