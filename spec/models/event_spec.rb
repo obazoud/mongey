@@ -11,6 +11,12 @@ describe Event do
     end
   end
 
+  describe 'relations' do
+    it 'belongs to user' do
+      should belong_to(:user).of_type(User)
+    end
+  end
+
   describe 'validation' do
     it 'validates presence of operation_date' do
       should validate_presence_of( :operation_date )
