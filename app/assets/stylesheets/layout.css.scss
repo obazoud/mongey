@@ -29,18 +29,25 @@ header {
   left: 0;
   border-bottom: 1px solid #040000;
 
-
   .container {
     height: 2.4em;
 
-    a {
-      font-size: 3em;
-      color: white;
+    .logo {
+      float: left;
+      top: 0.3em;
+      position: relative;
+
+      a {
+        font-size: 3em;
+        color: #ccc;
+        text-decoration: none;
+      }
     }
 
-    #user {
-      color: white;
-      left: 3em;
+    .right {
+      float: right;
+      position: relative;
+      top: 0.7em;
     }
   }
 }
