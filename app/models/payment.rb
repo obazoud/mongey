@@ -1,7 +1,8 @@
 class Payment < Event
-  attr_reader :from_account_id
-  attr_reader :payee
-  attr_reader :payee_id
+  belongs_to :account
+  belongs_to :payee
+
+  attr_reader :payee_name
   attr_reader :amount
   attr_reader :category_id
 end
