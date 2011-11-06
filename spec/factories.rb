@@ -18,6 +18,11 @@ Factory.define :account do |f|
   f.opening_date 1.year.ago
 end
 
+Factory.define :payee do |f|
+  f.sequence(:name) { |n| "Payee #{n}" }
+  f.opening_date 1.month.ago
+end
+
 Factory.define :user do |f|
   f.sequence(:username) { |n| "john#{n}"}
   f.password "foobar"
@@ -29,6 +34,18 @@ end
 Factory.define :event do |f|
   f.operation_date 1.day.ago
   f.association :user
+end
+
+Factory.define :payment do |f|
+  f.operation_date 1.day.ago
+  f.association :user
+  f.association :category
+end
+
+Factory.define :deposit do |f|
+  f.operation_date 1.day.ago
+  f.association :user
+  f.association :category
 end
 
 Factory.define :transaction do |f|
