@@ -1,12 +1,18 @@
+require 'spec_helper'
+
 describe Account do
 
   describe 'fields' do
-    it 'should include name, opening_date, opening_balance and balance' do
-      should have_fields( :name, :opening_date, :opening_balance, :balance)
+    it 'should include String name, opening_balance and balance' do
+      should have_fields( :name ).of_type(String)
+    end
+  
+    it 'inlude Date opening_date' do
+      should have_fields( :opening_date ).of_type(Date)
     end
 
-    it 'include opening_balance and balance with default value of 0.0' do
-      should have_fields( :opening_balance, :balance).of_type(Float).with_default_value_of(0.0)
+    it 'include BigDecimal opening_balance and balance with default value of 0.0' do
+      should have_fields( :opening_balance, :balance).of_type(BigDecimal).with_default_value_of(0.0)
     end
   end
 

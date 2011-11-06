@@ -13,17 +13,21 @@ describe User do
 
   describe 'validation' do
     it 'validate presence of username and email' do
-      should validate_presence_of(:username)
-      should validate_presence_of(:email)
+      should validate_presence_of( :username )
+      should validate_presence_of( :email )
     end
 
     it 'validate uniqueness of username and email' do
-      should validate_uniqueness_of(:username)
-      should validate_uniqueness_of(:email)
+      should validate_uniqueness_of( :username )
+      should validate_uniqueness_of( :email )
     end
 
     it 'validate presence of password' do
-      should validate_presence_of(:password)
+      should validate_presence_of( :password )
+    end
+
+    it 'validate presence of currency' do
+      should validate_presence_of( :currency )
     end
   end
 

@@ -24,6 +24,7 @@ class User
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_uniqueness_of :username, :email
+  validates_presence_of :currency
 
   scope :admins, where(:admin => false).asc(:username)
 

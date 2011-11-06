@@ -1,4 +1,4 @@
 class Payee < Account
-  field :customer_number
-  field :notes
+  field :customer_number, :type => String
+  field :notes, :type => String
 end

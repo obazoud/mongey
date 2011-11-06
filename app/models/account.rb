@@ -3,10 +3,10 @@ class Account
   include Mongoid::Timestamps
   include Mongoid::Paranoia
 
-  field :name
+  field :name, :type => String
   field :opening_date, :type => Date
-  field :opening_balance, :type => Float
-  field :balance, :type => Float
+  field :opening_balance, :type => BigDecimal
+  field :balance, :type => BigDecimal
 
   validates_presence_of :name, :opening_date
 
