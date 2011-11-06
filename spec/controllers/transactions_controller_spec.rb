@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe TransactionsController do
 
+  before do
+    Transaction.delete_all
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Transaction. As you add validations to Transaction, be sure to
   # update the return value of this method accordingly.
