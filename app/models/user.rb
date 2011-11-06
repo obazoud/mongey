@@ -4,7 +4,7 @@ class User
 
   field :username, :type => String
   field :email, :type => String
-  field :admin, :type => Boolean
+  field :admin, :type => Boolean, :default => false
   field :password_hash, :type => String
   field :password_salt, :type => String
 
