@@ -24,6 +24,8 @@ class User
   validates_confirmation_of :password
   validates_uniqueness_of :username, :email
 
+  scope :admins, where(:admin => false).asc(:username)
+
   def self.authenticate(username, password)
     user = where(username: username).first
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
