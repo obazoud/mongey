@@ -15,7 +15,7 @@
      <div class="right">
        <div class="user">
        <% if current_user %>
-         Logged in as <%= link_to current_user.username, current_user %>. <%= link_to 'Log out', logout_path %>
+         Logged in as <%= link_to current_user.username, user_path %>. <%= link_to 'Log out', logout_path %>
        <% else %>
          Please <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', login_path %>.
        <% end %>
