@@ -5,8 +5,8 @@ class Account
 
   field :name, :type => String
   field :opening_date, :type => Date
-  field :opening_balance, :type => BigDecimal
-  field :balance, :type => BigDecimal
+  field :opening_balance, :type => BigDecimal, :default => 0.0
+  field :balance, :type => BigDecimal, :default => 0.0
 
   validates_presence_of :name, :opening_date
 
