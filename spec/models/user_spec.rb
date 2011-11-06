@@ -31,8 +31,8 @@ describe User do
     it 'is timestamped' do
       should be_timestamped_document
     end
-    it 'is paranoied' do
-      should be_paranoied_document
+    it 'is paranoid' do
+      should be_paranoid_document
     end
   end
 
