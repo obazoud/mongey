@@ -7,6 +7,10 @@ describe CurrenciesController do
   end
 
   describe "GET index" do
+    before do
+      Currency.delete_all
+    end
+
     it "assigns all currencies as @currencies" do
       currency = Currency.create! valid_attributes
       get :index
