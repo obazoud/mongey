@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :payee %><br />
-    <%= f.text_field :payee %>
+    <%= f.text_field :payee_name %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
@@ -32,8 +32,8 @@
     <%= collection_select(:payment, :category_id, Category.all, :id, :name)  %>
   </div>
   <div class="field">
-    <%= f.label :from_account %><br />
-    <%= collection_select(:payment, :from_account_id, Bankaccount.all, :id, :name)  %>
+    <%= f.label :account %><br />
+    <%= collection_select(:payment, :account_id, current_user.bankaccounts.all, :id, :name)  %>
   </div>
   <div class="actions">
     <%= f.submit %>
