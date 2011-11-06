@@ -43,6 +43,7 @@ describe DepositsController do
         assigns(:deposit).transactions.count == 2
         assigns(:deposit).user.should eq(@user)
         assigns(:deposit).payer.name.should  == "New Payer"
+        assigns(:deposit).payer.should be_persisted
       end
     end
   end

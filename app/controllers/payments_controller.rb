@@ -17,7 +17,7 @@ class PaymentsController < ApplicationController
     account = @payment.account
 
     payee = Payee.where(name: params[:payment][:payee_name]).first
-    payee = current_user.payees.create(:name => params[:payment][:payee_name], :balance => 0.0) if payee.nil?
+    payee = current_user.payees.create!(:name => params[:payment][:payee_name], :opening_date => Time.now, :balance => 0.0) if payee.nil?
     @payment.payee = payee
 
     credit_transaction = @payment.transactions.new(:memo => @payment[:memo], 

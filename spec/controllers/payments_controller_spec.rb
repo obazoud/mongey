@@ -43,6 +43,7 @@ describe PaymentsController do
         assigns(:payment).transactions.count == 2
         assigns(:payment).user.should eq(@user)
         assigns(:payment).payee.name.should  == "New Payee"
+        assigns(:payment).payee.should be_persisted
       end
     end
   end

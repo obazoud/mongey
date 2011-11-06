@@ -8,7 +8,7 @@ class DepositsController < ApplicationController
     
     account = @deposit.account
     payer = Payee.where(name: params[:deposit][:payer_name]).first
-    payer = Payee.create(:name => params[:deposit][:payer_name], :balance => 0.0) if payer.nil?
+    payer = Payee.create!(:name => params[:deposit][:payer_name], :opening_date => Time.now, :balance => 0.0) if payer.nil?
     @deposit.payer = payer
 
     credit_transaction = @deposit.transactions.new(:memo => @deposit[:memo], 
