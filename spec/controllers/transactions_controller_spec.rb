@@ -6,12 +6,12 @@ describe TransactionsController do
   # Transaction. As you add validations to Transaction, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    FactoryGirl.attributes_for(:transaction)
   end
 
   describe "GET index" do
     it "assigns all transactions as @transactions" do
-      transaction = Transaction.create! valid_attributes
+      transaction = FactoryGirl.create(:transaction)
       get :index
       assigns(:transactions).should eq([transaction])
     end
@@ -19,7 +19,7 @@ describe TransactionsController do
 
   describe "GET show" do
     it "assigns the requested transaction as @transaction" do
-      transaction = Transaction.create! valid_attributes
+      transaction = FactoryGirl.create(:transaction)
       get :show, :id => transaction.id
       assigns(:transaction).should eq(transaction)
     end
