@@ -2,35 +2,47 @@ require 'spec_helper'
 
 describe User do
   describe 'fields' do
-    it 'should include username, email, password_hash & password_salt' do
+    it 'include username, email, password_hash & password_salt' do
       should have_fields(:username, :email, :password_hash, :password_salt).of_type(String)
+    end
+  
+    it 'include admin with default value false' do
+      should have_fields(:admin).of_type(Boolean).with_default_value_of(false)
     end
   end
 
   describe 'validation' do
-    it 'should validate presence of username and email' do
+    it 'validate presence of username and email' do
       should validate_presence_of(:username)
       should validate_presence_of(:email)
     end
 
-    it 'should validate presence of password' do
+    it 'validate uniqueness of username and email' do
+      should validate_uniqueness_of(:username)
+      should validate_uniqueness_of(:email)
+    end
+
+    it 'validate presence of password' do
       should validate_presence_of(:password)
     end
   end
 
   describe 'document' do
-    it 'should be timestamped' do
+    it 'is timestamped' do
       should be_timestamped_document
+    end
+    it 'is paranoied' do
+      should be_paranoied_document
     end
   end
 
   describe 'authentication' do
-    it 'should authenticate with matching username and password' do
+    it 'authenticate with matching username and password' do
       user = Factory(:user, :username => 'b1', :password => 'verysecret')
       User.authenticate('b1', 'verysecret').should == user
     end
 
-    it 'should not authenticate with incorrect password' do
+    it 'does not authenticate with incorrect password' do
       user = Factory(:user, :username => 'b2', :password => 'extremlysecret')
       User.authenticate('b2', 'verysecret').should be_nil
     end
