@@ -11,6 +11,9 @@ class Currency
   has_many :accounts
   has_many :users
 
+  validates_presence_of :code
+  validates_uniqueness_of :code
+
   def format(amount)
     a = '%.2f' % amount
     "#{prefix}#{a}#{suffix}"    
