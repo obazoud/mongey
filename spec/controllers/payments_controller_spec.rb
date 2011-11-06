@@ -29,6 +29,8 @@ describe PaymentsController do
         assigns(:payment).should be_a(Payment)
         assigns(:payment).transactions.count == 2
         assigns(:payment).user.should eq(@user)
+        assigns(:payment).transactions.first.should be_persisted
+        assigns(:payment).transactions.last.should be_persisted
         assigns(:payment).payee.should eq(@user.payees.first)
       end
 
@@ -41,6 +43,8 @@ describe PaymentsController do
         post :create, :payment => p
         assigns(:payment).should be_a(Payment)
         assigns(:payment).transactions.count == 2
+        assigns(:payment).transactions.first.should be_persisted
+        assigns(:payment).transactions.last.should be_persisted
         assigns(:payment).user.should eq(@user)
         assigns(:payment).payee.name.should  == "New Payee"
         assigns(:payment).payee.should be_persisted

@@ -28,6 +28,8 @@ describe DepositsController do
         post :create, :deposit => p
         assigns(:deposit).should be_a(Deposit)
         assigns(:deposit).transactions.count == 2
+        assigns(:deposit).transactions.first.should be_persisted
+        assigns(:deposit).transactions.last.should be_persisted
         assigns(:deposit).user.should eq(@user)
         assigns(:deposit).payer.should eq(@user.payees.first)
       end
@@ -41,6 +43,8 @@ describe DepositsController do
         post :create, :deposit => p
         assigns(:deposit).should be_a(Deposit)
         assigns(:deposit).transactions.count == 2
+        assigns(:deposit).transactions.first.should be_persisted
+        assigns(:deposit).transactions.last.should be_persisted
         assigns(:deposit).user.should eq(@user)
         assigns(:deposit).payer.name.should  == "New Payer"
         assigns(:deposit).payer.should be_persisted
