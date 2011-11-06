@@ -1,3 +1,7 @@
+Factory.define :category do |f|
+  f.name "A Category"
+end
+
 Factory.define :currency do |f|
   f.sequence(:code) { |n| "CC#{n}" }
 end
@@ -19,6 +23,18 @@ Factory.define :user do |f|
   f.password "foobar"
   f.password_confirmation { |u| u.password }
   f.sequence(:email) { |n| "john#{n}@example.com" }
+  f.association :currency
 end
 
+Factory.define :event do |f|
+  f.operation_date 1.day.ago
+  f.association :user
+end
 
+Factory.define :transaction do |f|
+  f.credit 0.0
+  f.debit 0.0
+  f.association :account
+  f.association :category
+  f.association :event
+end
