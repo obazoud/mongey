@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def auth_required
    if current_user
-     @current_user
+     current_user
    else
      redirect_to login_path, :alert => "Login required!"
    end
@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
 private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    User.find(session[:user_id]) if session[:user_id]
   end
 end
