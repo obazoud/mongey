@@ -22,7 +22,7 @@ header {
   z-index: 1001;
   padding: 6px 0;
   color: #CCC;
-  height: 36px;
+  height: 48px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -30,11 +30,11 @@ header {
   border-bottom: 1px solid #040000;
 
   .container {
-    height: 2.4em;
+    height: 54px;
 
     .logo {
       float: left;
-      top: 0.3em;
+      top: 8px;
       position: relative;
 
       a {
@@ -58,6 +58,35 @@ header {
         }
       }
     }
+  }
+}
+
+header .tabs {
+  list-style-type: none;
+  position: relative;
+  left: 60px;
+  top: 8px;
+  margin: 0;
+  padding: 0;
+  float: left;
+ 
+
+  .tab {
+    clear: none;
+    float: left;
+    padding: 3px;
+    margin: 2px;
+    margin-bottom: -4px;
+    font-size: 16px;
+    a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0px;
+    }
+  }
+
+  .selected {
+    border-bottom: 3px solid #777;
   }
 }
 

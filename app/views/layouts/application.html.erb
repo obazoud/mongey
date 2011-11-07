@@ -12,6 +12,12 @@
      <div class="logo">
        <%= link_to "mongey", root_url %>
      </div>
+     <% if current_user %>
+     <ul class="tabs">
+       <li class="tab" id="home"><%= link_to "Home", root_url %></li>
+       <li class="tab" id="accounts"><%= link_to "Accounts", accounts_path %></li>
+     </ul>
+     <% end %>
      <div class="right">
        <div class="user">
        <% if current_user %>
