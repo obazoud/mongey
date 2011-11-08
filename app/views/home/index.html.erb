@@ -1,31 +1,34 @@
-<h1>Home#index</h1>
+<div class="content">
+  <div class="left">
+  <h2>Accounts</h2>
+  <table>
+  <% @bankaccounts.each do |account| %>
+    <tr>
+      <td><%= link_to account.name, account_path(account) %></td>
+      <td><%= format_currency(account.balance, account.currency) %></td>
+    </tr>
+  
+  <% end %>
+  </table>
+  <%= link_to 'New Account', new_account_path %>
+  </div>
 
-<h2>Bank accounts</h2>
-<table>
-<% @bankaccounts.each do |account| %>
-  <tr>
-    <td><%= link_to account.name, account_path(account) %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="right">
+  <h2>Listing events</h2>
+  <table>
+    <tr>
+      <td>Date</td>
+      <td>Memo</td>
+      <td>Transactions</td>
+    </tr>
 
-<br />
-
-<%= link_to 'New Account', new_account_path %>
-
-<h2>Listing events</h2>
-<table>
-  <tr>
-    <td>Date</td>
-    <td>Memo</td>
-    <td>Transactions</td>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.operation_date %></td>
-    <td><%= event.memo %></td>
-    <td><%= event.transactions.count %></td>
-  </tr>
-<% end %>
-</table>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.operation_date %></td>
+      <td><%= event.memo %></td>
+      <td><%= event.transactions.count %></td>
+    </tr>
+  <% end %>
+  </table>
+  </div>
+</div>

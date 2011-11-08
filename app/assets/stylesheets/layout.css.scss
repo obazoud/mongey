@@ -5,9 +5,35 @@ body {
 }
 
 .container {
-  width: 1000px;
+  width: 950px;
   margin: 0 auto;
+  
+  h2 {
+    margin: 3px 0px;
+  }
+  
+  table {
+    width: 100%
+  }
+
+  .content {
+    position: relative;
+    top: 16px;
+    margin: 3px;
+
+    .left {
+      float: left;
+      width: 600px;
+    }    
+    
+    .right {
+      float: left;
+      width: 300px;
+    }
+  }
 }
+
+
 
 header {
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
