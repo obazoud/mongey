@@ -1,6 +1,12 @@
-<h1><%= @bankaccount.name %></h1>
-<p class="balance">Balance: <%= format_currency(@bankaccount.balance, @bankaccount.currency) %></p>
-<div class="top-buttons">
- <%= link_to "New account", new_bankaccount_path %>
- <%= link_to "Account settings", edit_bankaccount_path(@bankaccount) %>
+<div class="content">
+  <div class="top-buttons">
+   <%= link_to "New account", new_bankaccount_path %>
+   <%= link_to "Account settings", edit_bankaccount_path(@bankaccount) %>
+  </div>
+  <h1><%= @bankaccount.name %></h1>
+  <p class="number"><%= @bankaccount.number %></p>
+  <p class="balance"><%= format_currency(@bankaccount.balance, @bankaccount.currency) %></p>
+  <hr />
+  
 </div>
+

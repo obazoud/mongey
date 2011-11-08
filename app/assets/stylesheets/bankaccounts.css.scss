@@ -2,10 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.content {
+  h1 {
+    margin: 3px 0px;
+    margin-right: 24px;
+    float: left;
+  }
+
+  .number {
+    float: left;
+    margin: 8px 0px;
+    margin-right: 36px;
+    color: grey;
+  }
+
+  .balance {
+    float: left;
+    margin: 6px 0px;
+    font-size: 19px;
+    color: green;
+    clear: right;
+  }
+}
+
 .top-buttons {
   position: absolute;
-  left: 500px;
-  top: 10px;
+  top: 3px;
+  right: 0px;
   .ui-button {
     font-size: 0.8em;
     padding: .3em .7em;
