@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper CurrenciesHelper
 
-  helper_method :current_user, :current_user
+  helper_method :current_user, :auth_required
 
   def auth_required
    if current_user
