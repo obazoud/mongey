@@ -3,36 +3,37 @@
 <head>
   <title>Mongey</title>
   <%= stylesheet_link_tag    "application" %>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
- <header>
-   <div class="container">
-     <div class="logo">
-       <%= link_to "mongey", root_url %>
-     </div>
-     <% if current_user %>
-     <ul class="tabs">
-       <li class="tab" id="home"><%= link_to "Home", root_url %></li>
-       <li class="tab" id="accounts"><%= link_to "Accounts", accounts_path %></li>
-     </ul>
-     <% end %>
-     <div class="right">
-       <div class="user">
-       <% if current_user %>
-         Logged in as <%= link_to current_user.username, user_path %>. <%= link_to 'Log out', logout_path %>
-       <% else %>
-         Please <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', login_path %>.
-       <% end %>
-       </div>
-     </div>
-   </div>
- </header>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <%= link_to "mongey", root_url, :class => "brand" %>
+        <% if current_user %>
+        <ul class="nav">
+          <li class="tab" id="home"><%= link_to "Home", root_url %></li>
+          <li class="tab" id="accounts"><%= link_to "Accounts", accounts_path %></li>
+        </ul>
+        <% end %>
+        <ul class="nav secondary-nav">
+          <li>
+          <% if current_user %>
+            <%= link_to current_user.username, user_path %>
+          <% else %>
+            <%= link_to 'sign up', signup_path %>
+          <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
-  <div class ="container">
+  <div class="container content">
     <%= yield %>
   </div>
 </body>
