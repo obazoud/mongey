@@ -1,35 +1,50 @@
-<div class="col-left">
-<h2>Accounts</h2>
-<table>
-<% @bankaccounts.each do |account| %>
-  <tr>
-    <td><%= link_to account.name, child_account_path(account) %></td>
-    <td><%= format_currency(account.balance, account.currency) %></td>
-  </tr>
-
-<% end %>
-</table>
-<%= link_to 'New Account', new_account_path %>
+<div class="page-header">
+  <h1><%= @_current_user.username %> 
+      <small>
+      <%= pluralize(@_current_user.bankaccounts.count, 'account') %>, 
+      <%= pluralize(@_current_user.payees.count, 'payee') %>
+      </small>
+  </h1>
 </div>
-
-<div class="col-right">
-<h2>Listing events</h2>
-<table class="condensed-table">
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Memo</th>
-    <th>Transactions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @events.each do |event| %>
-  <tr>
-    <td><%= event.operation_date %></td>
-    <td><%= event.memo %></td>
-    <td><%= event.transactions.count %></td>
-  </tr>
+<div class="row">
+  <div class="span-one-third">
+  <h3>Accounts</h3>
+  <table class="condensed-table">
+    <thead>
+    <tr>
+      <th>Account</th>
+      <th>Balance</th>
+    </tr>
+    </thead>
+  <% @bankaccounts.each do |account| %>
+    <tr>
+      <td><%= link_to account.name, child_account_path(account) %></td>
+      <td><%= format_currency(account.balance, account.currency) %></td>
+    </tr>
   <% end %>
-  </tbody>
-</table>
+  </table>
+  <%= link_to 'New Account', new_account_path, :class => "btn small" %>
+  </div>
+
+  <div class="span-one-third">
+  <h3>Listing events</h3>
+  <table class="condensed-table">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Memo</th>
+      <th>Transactions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @events.each do |event| %>
+    <tr>
+      <td><%= event.operation_date %></td>
+      <td><%= event.memo %></td>
+      <td><%= event.transactions.count %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
 </div>

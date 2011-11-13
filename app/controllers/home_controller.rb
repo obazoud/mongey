@@ -1,9 +1,13 @@
 class HomeController < ApplicationController
 
-  before_filter :auth_required
-
   def index
-    @bankaccounts = current_user.bankaccounts.all
-    @events = current_user.events.all
+    if current_user
+      @bankaccounts = current_user.bankaccounts.all
+      @events = current_user.events.all
+      render "user_home"
+    else
+      @user = User.new
+    end
   end
+
 end
