@@ -20,9 +20,9 @@ describe HomeController do
         log_out
       end
 
-      it "redirects to login" do
+      it "returns http success" do
         get :index
-        response.should redirect_to(login_path)
+        response.should be_success
       end
     end
   end
