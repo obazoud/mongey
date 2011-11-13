@@ -1,3 +1,16 @@
 .container.content {
   padding-top: 40px;
 }
+
+form .field_with_errors {
+  label, input, span {
+    color: #B94A48;
+  }
+  input {
+    border-color: #EE5F5B;
+  }
+}
+
+.alert-message {
+  margin-top: 18px;
+}
