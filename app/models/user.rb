@@ -28,15 +28,19 @@ class User
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :username, :presence => true,
-                       :uniqueness => true
-  validates :email,    :presence => true,
                        :uniqueness => true,
+                       :length => { :within => 2..50 }
+
+  validates :email,    :presence => true,
+                       :uniqueness => { :case_sensitive => false },
                        :format => { :with => email_regex }
 
-  validates_presence_of :password, :on => :create
-  validates_confirmation_of :password
+  validates :password, :presence => { :on => :create },
+                       :confirmation => true,
+                       :length => { :minimum => 6 }
+
   validates_presence_of :currency
-  
+
   scope :admins, where(:admin => false).asc(:username)
 
   def self.authenticate(username, password)

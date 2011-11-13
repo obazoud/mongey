@@ -36,14 +36,32 @@ describe User do
   end
 
   it 'rejects already existing username' do
-    User.create(valid_attributes.merge(:username => 'philip'))
+    User.create!(valid_attributes.merge(:username => 'philip'))
     invalid_user = User.new(valid_attributes.merge(:username => 'philip'))
     invalid_user.should_not be_valid
   end
 
+  it 'rejects usernames that are to long' do
+    long_username = "a" * 51
+    long_username_user = User.new(valid_attributes.merge(:username => long_username))
+    long_username_user.should_not be_valid
+  end
+
+  it 'rejects usernames that are to short' do
+    short_username_user = User.new(valid_attributes.merge(:username => "a"))
+    short_username_user.should_not be_valid
+  end
+
   it 'rejects already existing email' do
-    User.create(valid_attributes.merge(:email => 'philip@example.com'))
+    User.create!(valid_attributes.merge(:email => 'philip@example.com'))
     invalid_user = User.new(valid_attributes.merge(:email => 'philip@example.com'))
+    invalid_user.should_not be_valid
+  end
+
+  it 'rejects email addresses identical up to case' do
+    email = 'philippa@example.com'
+    User.create!(valid_attributes.merge(:email => email))
+    invalid_user = User.new(valid_attributes.merge(:email => email.upcase))
     invalid_user.should_not be_valid
   end
 
@@ -63,8 +81,21 @@ describe User do
     end
   end
 
-  it 'validate presence of password' do
-    should validate_presence_of( :password )
+  it 'requires a password' do
+    user = User.new(valid_attributes.merge(:password => "", :password_confirmation => ""))
+    user.should_not be_valid
+  end
+
+  it 'requires a matching password confirmation' do
+    user = User.new(valid_attributes.merge(:password_confirmation => "invalidconfirmation"))
+    user.should_not be_valid
+  end
+
+  it 'rejects short passwords' do
+    short = "a" * 5
+    attr = valid_attributes.merge(:password => short, :password_confirmation => short)
+    user = User.new(attr)
+    user.should_not be_valid
   end
 
   it 'validate presence of currency' do
