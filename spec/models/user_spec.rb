@@ -1,13 +1,26 @@
 require 'spec_helper'
 
 describe User do
-  describe 'fields' do
-    it 'include username, email, password_hash & password_salt' do
-      should have_fields(:username, :email, :password_hash, :password_salt).of_type(String)
+  def valid_attributes
+    FactoryGirl.attributes_for(:user, :currency_id => FactoryGirl.create(:currency).id)
+  end
+
+  it { should have_fields(:username, :email, :password_hash, :password_salt).of_type(String) }
+  it { should have_fields(:admin).of_type(Boolean).with_default_value_of(false) }
+
+  it 'accept valid email addresses' do
+    addresses = %w[user@foo.com THE_USER@foo.bar.com first.last@foo.jp]
+    addresses.each do |address|
+      valid_user = User.new(valid_attributes.merge(:email => address))
+      valid_user.should be_valid
     end
-  
-    it 'include admin with default value false' do
-      should have_fields(:admin).of_type(Boolean).with_default_value_of(false)
+  end
+
+  it 'rejects invalid email addresses' do
+    addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
+    addresses.each do |address|
+      invalid_user = User.new(valid_attributes.merge(:email => address))
+      invalid_user.should_not be_valid
     end
   end
 

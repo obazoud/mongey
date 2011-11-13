@@ -25,12 +25,18 @@ class User
 
   belongs_to :currency
 
-  validates_presence_of :username, :email
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :username, :presence => true,
+                       :uniqueness => true
+  validates :email,    :presence => true,
+                       :uniqueness => true,
+                       :format => { :with => email_regex }
+
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
-  validates_uniqueness_of :username, :email
   validates_presence_of :currency
-
+  
   scope :admins, where(:admin => false).asc(:username)
 
   def self.authenticate(username, password)
