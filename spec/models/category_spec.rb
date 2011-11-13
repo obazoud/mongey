@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe Category do
-  describe 'fields' do
-    it 'include String name and description' do
-      should have_fields( :name, :description ).of_type(String)
-    end
+  describe 'document' do
+    it { should have_fields( :name, :description ).of_type(String) }
   end
 
   describe 'validation' do

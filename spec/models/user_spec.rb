@@ -5,11 +5,50 @@ describe User do
     FactoryGirl.attributes_for(:user, :currency_id => FactoryGirl.create(:currency).id)
   end
 
-  it { should have_fields(:username, :email, :password_hash, :password_salt).of_type(String) }
-  it { should have_fields(:admin).of_type(Boolean).with_default_value_of(false) }
+  describe 'document' do
+    it { should have_fields(:username, :email, :password_hash, :password_salt).of_type(String) }
+    it { should have_fields(:admin).of_type(Boolean).with_default_value_of(false) }
+
+    it { should belong_to(:currency).of_type(Currency) }
+    it { should have_many(:accounts).of_type(Account) }
+    it { should have_many(:bankaccounts).of_type(Bankaccount) }
+    it { should have_many(:payees).of_type(Payee) }
+    it { should have_many(:events).of_type(Event) }
+    it { should have_many(:payments).of_type(Payment) }
+    it { should have_many(:deposits).of_type(Deposit) }
+
+    it { should be_timestamped_document }
+    it { should be_paranoid_document }
+  end
+
+  it 'creates a new instance given valid_attributes' do
+    User.create!(valid_attributes)
+  end
+
+  it 'requires a username' do
+    no_username_user = User.new(valid_attributes.merge(:username => ""))
+    no_username_user.should_not be_valid
+  end
+
+  it 'requires a email' do
+    no_email_user = User.new(valid_attributes.merge(:email => ""))
+    no_email_user.should_not be_valid
+  end
+
+  it 'rejects already existing username' do
+    User.create(valid_attributes.merge(:username => 'philip'))
+    invalid_user = User.new(valid_attributes.merge(:username => 'philip'))
+    invalid_user.should_not be_valid
+  end
+
+  it 'rejects already existing email' do
+    User.create(valid_attributes.merge(:email => 'philip@example.com'))
+    invalid_user = User.new(valid_attributes.merge(:email => 'philip@example.com'))
+    invalid_user.should_not be_valid
+  end
 
   it 'accept valid email addresses' do
-    addresses = %w[user@foo.com THE_USER@foo.bar.com first.last@foo.jp]
+    addresses = %w[user@foo.com THE_USER@foo.bar.com first.last@foo.jp usr@some.museum]
     addresses.each do |address|
       valid_user = User.new(valid_attributes.merge(:email => address))
       valid_user.should be_valid
@@ -24,51 +63,12 @@ describe User do
     end
   end
 
-  describe 'relations' do
-    it 'belongs to currency' do
-      should belong_to(:currency).of_type(Currency)
-    end
-
-    it 'has many accounts, bankaccounts and payees' do
-      should have_many(:accounts).of_type(Account)
-      should have_many(:bankaccounts).of_type(Bankaccount)
-      should have_many(:payees).of_type(Payee)
-    end
-
-    it 'has many events, payments and deposits' do
-      should have_many(:events).of_type(Event)
-      should have_many(:payments).of_type(Payment)
-      should have_many(:deposits).of_type(Deposit)
-    end
+  it 'validate presence of password' do
+    should validate_presence_of( :password )
   end
 
-  describe 'validation' do
-    it 'validate presence of username and email' do
-      should validate_presence_of( :username )
-      should validate_presence_of( :email )
-    end
-
-    it 'validate uniqueness of username and email' do
-      should validate_uniqueness_of( :username )
-      should validate_uniqueness_of( :email )
-    end
-
-    it 'validate presence of password' do
-      should validate_presence_of( :password )
-    end
-
-    it 'validate presence of currency' do
-      should validate_presence_of( :currency )
-    end
-  end
-
-  describe 'document' do
-    it 'is timestamped' do
-      should be_timestamped_document
-    end
-    it 'is paranoid' do
-      should be_paranoid_document
-    end
+  it 'validate presence of currency' do
+    should validate_presence_of( :currency )
   end
 
   describe 'authentication' do

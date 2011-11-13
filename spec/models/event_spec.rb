@@ -1,20 +1,10 @@
 require 'spec_helper'
 
 describe Event do
-  describe 'fields' do
-    it 'include Date operation_date' do
-      should have_fields( :operation_date ).of_type(Date)
-    end
-
-    it 'include String memo' do
-      should have_fields( :memo ).of_type(String)
-    end
-  end
-
-  describe 'relations' do
-    it 'belongs to user' do
-      should belong_to(:user).of_type(User)
-    end
+  describe 'document' do
+    it { should have_fields( :operation_date ).of_type(Date) } 
+    it { should have_fields( :memo ).of_type(String) }
+    it { should belong_to(:user).of_type(User) }
   end
 
   describe 'validation' do

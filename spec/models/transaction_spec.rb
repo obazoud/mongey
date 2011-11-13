@@ -1,14 +1,9 @@
 require 'spec_helper'
 
 describe Transaction do
-  describe 'fields' do
-    it 'include memo' do
-      should have_fields( :memo ).of_type(String)
-    end
-
-    it 'include credit and debit' do
-      should have_fields( :credit, :debit ).of_type(BigDecimal)
-    end
+  describe 'document' do
+    it { should have_fields( :memo ).of_type(String) }
+    it { should have_fields( :credit, :debit ).of_type(BigDecimal) }
   end
 
   describe 'validation' do
@@ -27,11 +22,11 @@ describe Transaction do
     end
 
     it 'validates presence of category' do
-      should validate_presence_of(:event)
+      should validate_presence_of(:category)
     end
 
     it 'validates presence of account' do
-      should validate_presence_of(:event)
+      should validate_presence_of(:account)
     end
   end
 end
