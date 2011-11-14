@@ -6,7 +6,7 @@ describe User do
   end
 
   describe 'document' do
-    it { should have_fields(:username, :email, :password_hash, :password_salt).of_type(String) }
+    it { should have_fields(:username, :email, :password_hash).of_type(String) }
     it { should have_fields(:admin).of_type(Boolean).with_default_value_of(false) }
 
     it { should belong_to(:currency).of_type(Currency) }
@@ -96,6 +96,30 @@ describe User do
     attr = valid_attributes.merge(:password => short, :password_confirmation => short)
     user = User.new(attr)
     user.should_not be_valid
+  end
+  
+  describe 'password encryption' do
+    before(:each) do
+      @user = User.create!(valid_attributes)
+    end
+    
+    it 'should have a password_hash attribute' do
+      @user.should respond_to(:password_hash)
+    end
+    
+    it 'should set the password_hash' do
+      @user.password_hash.should_not be_blank
+    end
+    
+    describe 'has_password? method' do
+      it 'should return true if the passwords match' do
+        @user.has_password?(valid_attributes[:password]).should be_true
+      end
+      
+      it 'should return false if the passwords dont match' do
+        @user.has_password?("invalid").should be_false
+      end
+    end
   end
 
   it 'validate presence of currency' do

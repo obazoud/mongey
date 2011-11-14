@@ -7,7 +7,6 @@ class User
   field :email, :type => String
   field :admin, :type => Boolean, :default => false
   field :password_hash, :type => String
-  field :password_salt, :type => String
 
   attr_accessible :username, :email, :password, :password_confirmation
   attr_accessible :currency_id
@@ -41,11 +40,15 @@ class User
 
   validates_presence_of :currency
 
-  scope :admins, where(:admin => false).asc(:username)
+  def has_password?(submitted_password)
+    password_hash == BCrypt::Engine.hash_secret(submitted_password, password_hash)
+  end
+
+private
 
   def self.authenticate(username, password)
     user = where(username: username).first
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+    if user && user.has_password?(password)
       user
     else
       nil
@@ -54,8 +57,7 @@ class User
 
   def encrypt_password
     if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+      self.password_hash = BCrypt::Engine.hash_secret(password, BCrypt::Engine.generate_salt)
     end
   end
 end
