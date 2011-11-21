@@ -6,7 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Currency.create(
-  [{:code => 'SEK', :prefix => '', :suffix => ' kr', :decimal_point => ",", :thousand_separator => ' '}],
-  [{:code => 'USD', :prefix => '$ ', :suffix => '', :decimal_point => ".", :thousand_separator => '\''}]
-)
+Currency.create(:code => 'SEK', :prefix => '',  :suffix => ' kr', :decimal_point => ",", :thousand_separator => ' ')
+Currency.create(:code => 'USD', :prefix => '$ ', :suffix => '',   :decimal_point => ".", :thousand_separator => '\'')
