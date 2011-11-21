@@ -34,4 +34,5 @@ group :test do
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
   gem 'mongoid-rspec'
+  gem 'growl'
 end
