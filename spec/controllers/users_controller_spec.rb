@@ -32,15 +32,9 @@ describe UsersController do
         }.to change(User, :count).by(1)
       end
 
-      it "assigns a newly created user as @user" do
+      it "redirects to login page" do
         post :create, :user => valid_attributes
-        assigns(:user).should be_a(User)
-        assigns(:user).should be_persisted
-      end
-
-      it "redirects to the created user" do
-        post :create, :user => valid_attributes
-        response.should redirect_to(User.last)
+        response.should redirect_to(login_path)
       end
     end
 
