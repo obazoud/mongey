@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Transaction do
   describe 'document' do
     it { should have_fields( :memo ).of_type(String) }
-    it { should have_fields( :credit, :debit ).of_type(BigDecimal) }
+    it { should have_fields( :credit, :debit ).of_type(Money) }
   end
 
   describe 'validation' do

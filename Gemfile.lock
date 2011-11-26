@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/pubis/mongoid_money
+  revision: 4eb1bb3e238192d76a11403aeb540480d762df8f
+  branch: make_currency_independent
+  specs:
+    mongoid_money (0.2.2)
+      bson_ext
+      mongoid (~> 2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -199,6 +208,7 @@ DEPENDENCIES
   jquery-rails
   mongoid
   mongoid-rspec
+  mongoid_money!
   rails (= 3.1.1)
   redis
   redis-namespace

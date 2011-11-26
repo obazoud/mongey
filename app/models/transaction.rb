@@ -2,8 +2,8 @@ class Transaction
   include Mongoid::Document
 
   field :memo, :type => String
-  field :credit, :type => BigDecimal
-  field :debit, :type => BigDecimal
+  field :credit, :type => Money
+  field :debit, :type => Money
 
   belongs_to :account
   belongs_to :category

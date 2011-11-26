@@ -5,8 +5,8 @@ class Account
 
   field :name, :type => String
   field :opening_date, :type => Date
-  field :opening_balance, :type => BigDecimal, :default => 0.0
-  field :balance, :type => BigDecimal, :default => 0.0
+  field :opening_balance, :type => Money, :default => 0.ones
+  field :balance, :type => Money, :default => 0.ones
 
   attr_accessor :redis_balance
   attr_reader :currency_id

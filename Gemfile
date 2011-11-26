@@ -11,6 +11,8 @@ gem 'therubyracer'
 gem 'redis'
 gem 'redis-namespace'
 
+gem 'mongoid_money', :git => 'git://github.com/pubis/mongoid_money', :branch => "make_currency_independent"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
