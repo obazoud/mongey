@@ -8,6 +8,9 @@ class Account
   field :opening_balance, :type => BigDecimal, :default => 0.0
   field :balance, :type => BigDecimal, :default => 0.0
 
+  attr_accessor :redis_balance
+  attr_reader :currency_id
+
   validates_presence_of :name, :opening_date
 
   has_many :transactions
@@ -16,5 +19,21 @@ class Account
 
   validates_associated :currency
 
-  attr_reader :currency_id
+  after_create :create_redis_record
+private
+
+  def save_redis
+    if redis_balance.present?
+      $rn.set redis_key(:balance), redis_balance
+    end
+  end
+  
+  def create_redis_record
+    
+  end
+
+  def redis_key(key)
+    key = key.to_s if key.is_a? Symbol
+    "account:#{self.id}:#{key}"
+  end
 end

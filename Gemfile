@@ -8,6 +8,8 @@ gem 'rails', '3.1.1'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'therubyracer'
+gem 'redis'
+gem 'redis-namespace'
 
 # Gems used only for assets and not required
 # in production environments by default.
