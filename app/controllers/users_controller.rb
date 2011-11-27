@@ -21,7 +21,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    logger.debug "User parameters recieved: #{params.inspect}"
     if @user.save
       redirect_to login_path, notice: 'User was successfully created! Now, please login...'
     else
@@ -31,7 +30,6 @@ class UsersController < ApplicationController
 
   def save_settings
     @user = current_user
-    logger.debug "User parameters recieved: #{params.inspect}"
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to user_path, notice: 'User was successfully updated.' }
