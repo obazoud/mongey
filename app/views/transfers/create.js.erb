@@ -1,0 +1,4 @@
+$('div.transactions table tbody').prepend("<%= escape_javascript(render :partial => "bankaccounts/transaction_row", :locals => {:transaction => @transfer.transactions.last, :account => @transfer.from_account}) %>");
+$('p.balance').html("<%= format_currency(@transfer.from_account.balance, @transfer.from_account.currency) %>")
+$('div#_transfer_form').html("<%= escape_javascript(render :partial => "transfers/newform", :locals => {:transfer => @_transfer}) %>");
+$('div.modal a.close').click();

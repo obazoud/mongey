@@ -21,6 +21,7 @@ class User
   has_many :events
   has_many :payments
   has_many :deposits
+  has_many :transfers
 
   belongs_to :currency
 
@@ -82,6 +83,14 @@ class User
     new_deposit.build_transactions(opts)
     new_deposit
   end
+  
+  def build_transfer(opts = {})
+    opts[:user_id] = self.id
+    new_transfer = Transfer.new(opts)
+    new_transfer.build_transactions(opts)
+    new_transfer
+  end
+
   def process_event(event)
     event.transactions.each do |t|
       a = t.account

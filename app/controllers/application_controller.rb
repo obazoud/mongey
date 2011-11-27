@@ -20,8 +20,9 @@ private
 
   def create_dummy_transactions
     if current_user
-      @_payment = @_current_user.payments.new
-      @_deposit = @_current_user.deposits.new
+      @_payment =  @_current_user.payments.new
+      @_deposit =  @_current_user.deposits.new
+      @_transfer = @_current_user.transfers.new
     end
   end
 end

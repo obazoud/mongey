@@ -17,6 +17,7 @@ Mongey::Application.routes.draw do
   resources :events
   resources :payments
   resources :deposits
+  resources :transfers
 
   resources :transactions
 
