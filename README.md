@@ -7,18 +7,28 @@ as the database backend.
 Info
 ----
 
-So far this is mostly an experiment with mongodb and a app i have wanted to 
-build for some time. Mongo lets you do some cool things, and try them realy 
-fast, since it's schemaless.
+WIP (Work In Progress)
 
 Currently you should be able to:
 
- * Create a new user, and login
- * Create a bankaccount
- * Create a payment, which should create two transactions (credit/debit)
- * Create a deposits, which also should create two transactions
+ * Sign up, log in and log out...
+ * Create bankaccounts
+ * Create events (payments, deposits and transfers).
+ * Payees are created automatic (as accounts) when creating events.
 
 Todo
 ----
 
  * Alot...
+
+Demo
+----
+
+A demo should be available at [mongey.pubis.se][demo].
+
+Legal stuff
+-----------
+
+Do what you wan't as long you have fun on the way!
+
+  [demo]: http://mongey.pubis.se
