@@ -71,6 +71,17 @@ class User
     new_payment
   end
 
+  def build_deposit(opts = {})
+    opts[:user_id] = self.id
+    opts[:payer] = self.payees.where(name: opts[:payer_name]).first ||
+                   self.payees.create!(:name => opts[:payer_name], 
+                                       :opening_date => Time.now, 
+                                       :initial_balance => 0.0)
+
+    new_deposit = Deposit.new(opts)
+    new_deposit.build_transactions(opts)
+    new_deposit
+  end
   def process_event(event)
     event.transactions.each do |t|
       a = t.account

@@ -1,34 +1,33 @@
 class DepositsController < ApplicationController
+
+  def index
+  end
+
+  def show
+
+  end
+
   def new
     @deposit = current_user.deposits.new
   end
 
   def create
-    @deposit = current_user.deposits.new(params[:deposit])
-    
-    @deposit.payer = payer = Payee.where(name: params[:deposit][:payer_name]).first ||
-                     current_user.payees.create!(:name => params[:deposit][:payer_name], :opening_date => Time.now, :balance => 0.0) if payer.nil?
+    @deposit = current_user.build_deposit(params[:deposit])
 
-    @deposit.transactions.new(:memo => @deposit[:memo], 
-                              :credit => @deposit[:amount].to_f, 
-                              :debit => 0, 
-                              :account_id => @deposit.account.id,
-                              :category_id => @deposit[:category_id])
-    @deposit.transactions.new(:memo => @deposit[:memo],
-                              :credit => 0,
-                              :debit => @deposit[:amount].to_f,
-                              :account_id => @deposit.payer.id,
-                              :category_id => @deposit[:category_id])
+    respond_to do |format|
+      if @deposit.save
+        # deposit validates transactions, so it should be safe to save them
+        @deposit.transactions.each { |t| t.save! }
 
-    @deposit.payer.balance -= @deposit[:amount].to_f
-    @deposit.account.balance += @deposit[:amount].to_f
-
-    #Save the payment
-    @deposit.save!
-    @deposit.transactions.each { |t| t.save! }
-    
-    #Save changes to accounts
-    @deposit.payer.save
-    @deposit.account.save
+        current_user.process_event(@deposit)
+      
+        format.html { redirect_to bankaccount_path(@deposit.account), :notice => "Deposit created" }
+        format.js # create.js.erb
+      else
+        flash.now.alert = "Deposit could not be saved!"
+        format.html { render "new" }
+        format.js { render "new" }
+      end
+    end
   end
 end

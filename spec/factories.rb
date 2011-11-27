@@ -16,11 +16,11 @@ end
 Factory.define :account do |f|
   f.sequence(:name) { |n| "Account #{n}" }
   f.opening_date 1.year.ago
+  f.initial_balance 123.45
 end
 
-Factory.define :payee do |f|
+Factory.define :payee, :class => Payee, :parent => :account do |f|
   f.sequence(:name) { |n| "Payee #{n}" }
-  f.opening_date 1.month.ago
 end
 
 Factory.define :user do |f|
@@ -34,23 +34,21 @@ end
 Factory.define :event do |f|
   f.operation_date 1.day.ago
   f.association :user
+  f.amount 1234.50
 end
 
-Factory.define :payment do |f|
-  f.operation_date 1.day.ago
-  f.association :user
+Factory.define :payment, :class => Payment, :parent => :event do |f|
   f.association :category
 end
 
-Factory.define :deposit do |f|
-  f.operation_date 1.day.ago
-  f.association :user
+Factory.define :deposit, :class => Deposit, :parent => :event do |f|
   f.association :category
 end
 
 Factory.define :transaction do |f|
-  f.credit 0.0
-  f.debit 0.0
+  f.credit_amount 0.0
+  f.debit_amount 0.0
+  f.operation_date 1.day.ago
   f.association :account
   f.association :category
   f.association :event

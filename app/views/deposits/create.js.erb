@@ -1,0 +1,5 @@
+$('div.transactions table tbody').prepend("<%= escape_javascript(render :partial => "bankaccounts/transaction_row", :locals => {:transaction => @deposit.transactions.first, :account => @deposit.account}) %>");
+$('p.balance').html("<%= format_currency(@deposit.account.balance, @deposit.account.currency) %>")
+$('div#_deposit_form').html("<%= escape_javascript(render :partial => "deposits/newform", :locals => {:deposit => @_deposit}) %>");
+$('#deposit_payer_name').autocomplete({source: "/payees/autocomplete"});
+$('div.modal a.close').click();

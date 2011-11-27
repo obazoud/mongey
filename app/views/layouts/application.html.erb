@@ -22,9 +22,9 @@
           <li class="dropdown">
             <%= link_to "New transaction", "#", :class => "dropdown-toggle" %>
             <ul class="dropdown-menu">
-              <li><%= link_to "Deposit", "#" %>
               <li><%= link_to "Transfer", "#" %>
               <li><%= link_to "Payment" , "#", "data-controls-modal" => "modal-payment" , "data-backdrop" => "static" %>
+              <li><%= link_to "Deposit" , "#", "data-controls-modal" => "modal-deposit" , "data-backdrop" => "static" %>
             </ul>
           </li>
           <% end %>
@@ -71,8 +71,10 @@
       <%= link_to 'x', '#', :class => 'close' %>
       <h3>New deposit</h3>
     </div>
-    </fieldset>
-    <% end %>
+	<div id="_deposit_form">
+		<%= render :partial => "deposits/newform", :locals => {:deposit => @_deposit } %>
+	</div>
+  </div>
   </div>
   <% end %>
 </body>
