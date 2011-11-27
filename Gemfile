@@ -8,8 +8,6 @@ gem 'rails', '3.1.1'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'therubyracer'
-gem 'redis'
-gem 'redis-namespace'
 
 gem 'mongoid_money', :git => 'git://github.com/pubis/mongoid_money', :branch => "make_currency_independent"
 
