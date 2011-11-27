@@ -1,0 +1,6 @@
+<tr>
+  <td class="right"><%= transaction.operation_date %></td>
+  <td><%= transaction.memo %></td>
+  <td class="right"><%= format_currency(transaction.credit - transaction.debit, account.currency) %></td>
+  <td class="right">&nbsp;</td>
+</tr>

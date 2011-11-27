@@ -7,22 +7,18 @@ describe Transaction do
   end
 
   describe 'validation' do
-    it 'validates presence of credit and debit' do
-      should validate_presence_of(:credit)
-      should validate_presence_of(:debit)
+    it 'validates presence of credit_amount and debit_amount' do
+      should validate_presence_of(:credit_amount)
+      should validate_presence_of(:debit_amount)
     end
 
-    it 'validates numericality of credit and debit' do
-      should validate_numericality_of(:credit)
-      should validate_numericality_of(:debit)
+    it 'validates numericality of credit_amount and debit_amount' do
+      should validate_numericality_of(:credit_amount)
+      should validate_numericality_of(:debit_amount)
     end
 
     it 'validates presence of event' do
       should validate_presence_of(:event)
-    end
-
-    it 'validates presence of category' do
-      should validate_presence_of(:category)
     end
 
     it 'validates presence of account' do

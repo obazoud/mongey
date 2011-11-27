@@ -1,3 +1,8 @@
 <h1>Payment</h1>
 
 <%= debug @payment %><br />
+<ul>
+  <% @payment.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>

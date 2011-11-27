@@ -44,8 +44,6 @@ class User
     password_hash == BCrypt::Engine.hash_secret(submitted_password, password_hash)
   end
 
-private
-
   def self.authenticate(username, password)
     user = where(username: username).first
     if user && user.has_password?(password)
@@ -58,6 +56,25 @@ private
   def encrypt_password
     if password.present?
       self.password_hash = BCrypt::Engine.hash_secret(password, BCrypt::Engine.generate_salt)
+    end
+  end
+  
+  def build_payment(opts = {})
+    opts[:user_id] = self.id
+    opts[:payee] = self.payees.where(name: opts[:payee_name]).first ||
+                   self.payees.create!(:name => opts[:payee_name], 
+                                       :opening_date => Time.now, 
+                                       :initial_balance => 0.0)
+
+    new_payment = Payment.new(opts)
+    new_payment.build_transactions(opts)
+    new_payment
+  end
+
+  def process_event(event)
+    event.transactions.each do |t|
+      a = t.account
+      a.process_transaction(t)
     end
   end
 end

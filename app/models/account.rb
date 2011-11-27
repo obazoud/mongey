@@ -8,10 +8,13 @@ class Account
   field :opening_balance, :type => Money, :default => 0.ones
   field :balance, :type => Money, :default => 0.ones
 
-  attr_accessor :redis_balance
+  attr_accessor :initial_balance
   attr_reader :currency_id
 
-  validates_presence_of :name, :opening_date
+  validates :name, :presence => true
+  validates :opening_date, :presence => true
+  validates :initial_balance, :presence => {:on => :create},
+                              :numericality => {:on => :create}
 
   has_many :transactions
   belongs_to :user
@@ -19,21 +22,18 @@ class Account
 
   validates_associated :currency
 
-  after_create :create_redis_record
-private
-
-  def save_redis
-    if redis_balance.present?
-      $rn.set redis_key(:balance), redis_balance
-    end
-  end
+  before_save :set_balance
   
-  def create_redis_record
-    
+  def process_transaction(transaction)
+    balance = self.balance + transaction.credit - transaction.debit
+    update_attributes(:balance => balance)
   end
 
-  def redis_key(key)
-    key = key.to_s if key.is_a? Symbol
-    "account:#{self.id}:#{key}"
+private
+  def set_balance
+    if initial_balance.present?
+      self.opening_balance = Money.new_from_ones(initial_balance.to_f)
+      self.balance = Money.new_from_ones(initial_balance.to_f)
+    end
   end
 end

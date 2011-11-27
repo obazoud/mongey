@@ -4,7 +4,7 @@
   </h1>
 </div>
 <p class="balance"><%= format_currency(@bankaccount.balance, @bankaccount.currency) %></p>
-<hr /> 
+<hr />
 <div class="transactions">
   <table width="100%">
     <thead>
@@ -16,13 +16,8 @@
     </tr>
     </thead>
     <tbody>
-    <% @bankaccount.transactions.each do |t| %>
-      <tr>
-        <td class="right"><%= t.event.operation_date %></td>
-        <td><%= t.memo %></td>
-        <td class="right"><%= format_currency(t.credit - t.debit, @bankaccount.currency) %></td>
-        <td class="right">&nbsp;</td>
-      </tr>
+    <% @bankaccount.transactions.order_by([:operation_date, :desc]).each do |t| %>
+		<%= render :partial => "transaction_row", :locals => {:transaction => t, :account => @bankaccount} %>
     <% end %> 
    </tbody>
   </table>

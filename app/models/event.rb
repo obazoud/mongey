@@ -4,9 +4,13 @@ class Event
   field :operation_date, :type => Date
   field :memo, :type => String
 
+  attr_accessor :amount
+
   has_many :transactions
   belongs_to :user
 
-  validates_presence_of :operation_date
-  validates_presence_of :user
+  validates :operation_date, :presence => true
+  validates :user, :presence => true
+  validates :amount, :presence => {:on => :create},
+                     :numericality => true
 end

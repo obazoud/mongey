@@ -1,3 +1,6 @@
 <h1>Payment</h1>
 
 <%= debug @payment %>
+<% @payment.errors.each do |err| %> 
+	<%= debug err %>
+<% end %>

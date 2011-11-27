@@ -5,7 +5,6 @@ describe Account do
     it { should have_fields( :name ).of_type(String) }
     it { should have_fields( :opening_date ).of_type(Date) }
     it { should have_fields( :opening_balance ).of_type(Money).with_default_value_of(0.ones) }
-    it { should have_fields(:balance ).of_type(Money).with_default_value_of(0.ones) }
     it { should be_timestamped_document }
     it { should be_paranoid_document }
   end

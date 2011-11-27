@@ -58,6 +58,8 @@
     this.settings = $.extend({}, $.fn.modal.defaults, options)
     this.$element = $(content)
       .delegate('.close', 'click.modal', $.proxy(this.hide, this))
+    this.$element = $(content)
+      .delegate('.close-btn', 'click.modal', $.proxy(this.hide, this))
 
     if ( this.settings.show ) {
       this.show()
