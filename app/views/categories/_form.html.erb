@@ -10,16 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<fieldset>
+  <div class="clearfix"><%= f.label :parent %>
+	<div class="input"><%= f.collection_select :parent, Category.parents.all, :id, :name, :include_blank => true %></div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+  <div class="clearfix"><%= f.label :name %>
+	<div class="input"><%= f.text_field :name %></div>
+  </div>
+  <div class="clearfix"><%= f.label :description %>
+	<div class="input"><%= f.text_field :description %></div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save category", :class => "btn primary" %>
   </div>
+</fieldset>
 <% end %>
