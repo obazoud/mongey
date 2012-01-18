@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Category</th>
     <th>Description</th>
     <th></th>
     <th></th>
@@ -17,6 +17,15 @@
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+  <% category.children.each do |child| %>
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= child.name %></td>
+      <td><%= child.description %></td>
+      <td><%= link_to 'Show', child %></td>
+      <td><%= link_to 'Edit', edit_category_path(child) %></td>
+      <td><%= link_to 'Destroy', child, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
