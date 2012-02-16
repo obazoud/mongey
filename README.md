@@ -4,6 +4,8 @@ mongey
 mongey is a personal finance application written in Ruby on Rails using MongoDB
 as the database backend.
 
+**Note:** mongey has been discontinued in favor of [klinkers][klink]
+
 Info
 ----
 
@@ -32,3 +34,4 @@ Legal stuff
 Do what you wan't as long you have fun on the way!
 
   [demo]: http://mongey.pubis.se
+  [klink]: http://github.com/pubis/klinkers
